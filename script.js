@@ -389,7 +389,7 @@ function initAll(){
 
   // Milestone counter blocks
   gsap.from('.cnt-blk',{opacity:0,x:40,stagger:.08,duration:.8,
-    scrollTrigger:{trigger:'.mile-counters',start:'top 82%'}});
+    scrollTrigger:{trigger:'.mile-grid',start:'top 82%'}});
 
   // Footer reveal
   gsap.from('.ft-grid > *',{opacity:0,y:28,stagger:.1,duration:.7,
