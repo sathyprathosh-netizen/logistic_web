@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road Transport — FreightForce</title>
+<meta name="description" content="FreightForce Road Transport: 2,400+ vehicles, AI routing, 60-min pickup lock, across 60+ countries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --accent: #FF8A00; --black: #0a0a0a; --white: #fff; --gray: #666; --light: #f7f8fc; --pad: clamp(20px, 6vw, 90px); --ff-h: 'Plus Jakarta Sans', sans-serif; --ff-b: 'Inter', sans-serif; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-b); background: var(--white); color: var(--black); overflow-x: hidden; }
+.sp-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px var(--pad);
+    background: transparent;
+    transition: background 0.4s ease, padding 0.4s ease;
+}
+.sp-nav.scrolled {
+  background: rgba(5,5,5,0.94);
+  backdrop-filter: blur(20px);
+  padding: 12px var(--pad);
+}
+@media (max-width: 768px) {
+  .sp-nav { padding: 16px var(--pad); background: rgba(5,5,5,0.4); backdrop-filter: blur(10px); }
+  .sp-nav .logo { font-size: 16px; }
+  .sp-nav .btn-cta { padding: 8px 16px; font-size: 11px; }
+}
+.sp-nav .logo { font-family: var(--ff-h); font-size: 20px; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; }
+.sp-nav .logo span { color: var(--accent); }
+.sp-nav .nav-btns { display: flex; gap: 12px; }
+.sp-nav .btn-back { padding: 10px 22px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25); color: #fff; background: rgba(255,255,255,0.08); font-family: var(--ff-h); font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; }
+.sp-nav .btn-back:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+.sp-nav .btn-cta { 
+    padding: 10px 24px; border-radius: 100px; 
+    background: linear-gradient(135deg, #FF8A00 0%, #FF5C00 100%); 
+    color: #fff !important; font-family: var(--ff-h); font-size: 13px; font-weight: 800; 
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative; overflow: hidden; z-index: 1;
+    display: inline-flex; align-items: center;
+    box-shadow: 0 4px 15px rgba(255,138,0,0.3);
+}
+.sp-nav .btn-cta::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
+}
+.sp-nav .btn-cta:hover { 
+    transform: translateY(-2px) scale(1.05); 
+    box-shadow: 0 8px 25px rgba(255,138,0,0.5); 
+}
+.sp-nav .btn-cta:hover::before { left: 100%; }
+
+
+
+.sp-hero { height: 100vh; min-height: 600px; position: relative; overflow: hidden; display: flex; align-items: center; padding: 0 var(--pad); }
+.sp-hero-bg { position: absolute; inset: 0; background: url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1800') center/cover no-repeat; transform: scale(1.08); }
+.sp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 60%, rgba(0,0,0,0.58) 100%); }
+.sp-hero-content { position: relative; z-index: 2; width: 100%; max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.sp-hero-left { max-width: 700px; }
+.sp-hero-tag { display: inline-block; color: var(--accent); font-family: var(--ff-h); font-size: 11px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; padding: 8px 16px; border: 1px solid rgba(255,138,0,0.4); border-radius: 100px; background: rgba(255,138,0,0.08); }
+.sp-hero h1 { font-family: var(--ff-h); font-size: clamp(56px, 10vw, 140px); line-height: 0.85; color: #fff; font-weight: 800; letter-spacing: -3px; margin-bottom: 28px; }
+.sp-hero h1 span { color: var(--accent); }
+.sp-hero-desc { color: rgba(255,255,255,0.65); font-size: clamp(15px, 2vw, 19px); line-height: 1.65; max-width: 520px; }
+.sp-hero-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 32px; padding: 32px;
+    width: 100%; max-width: 420px; flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .sp-hero-card { padding: 24px; border-radius: 24px; }
+}
+.sp-hero-card h4 { color: #fff; font-family: var(--ff-h); font-size: 18px; margin-bottom: 14px; }
+.sp-hero-card p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
+.sp-hero-card-stats { display: flex; gap: 24px; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+.stat-item b { display: block; font-family: var(--ff-h); font-size: clamp(20px, 4vw, 26px); color: var(--accent); margin-bottom: 4px; }
+.stat-item span { font-size: 9px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; line-height: 1.3; }
+@media (max-width: 480px) {
+    .sp-hero-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sp-hero-card-stats .stat-item:last-child { grid-column: span 2; }
+}
+
+.sp-section { padding: clamp(60px, 10vw, 130px) var(--pad); }
+.sp-section.dark { background: var(--black); color: #fff; }
+.sp-section.light { background: var(--light); }
+.sp-label { font-family: var(--ff-h); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); margin-bottom: 16px; display: block; }
+.sp-h2 { font-family: var(--ff-h); font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 24px; }
+.sp-h2 span { color: var(--accent); }
+.sp-body { font-size: 18px; line-height: 1.7; color: var(--gray); max-width: 700px; }
+.sp-body.onDark { color: rgba(255,255,255,0.5); }
+
+.sp-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 70px; }
+.sp-card { padding: 36px 28px; border-radius: 28px; background: var(--white); border: 1px solid rgba(0,0,0,0.06); transition: all 0.5s cubic-bezier(.22,.8,.2,1); text-align: center; }
+.sp-section.dark .sp-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+.sp-card:hover { transform: translateY(-14px); box-shadow: 0 28px 70px rgba(0,0,0,0.08); border-color: rgba(255,138,0,0.25); }
+.sp-card-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+.sp-card h4 { font-family: var(--ff-h); font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.sp-section.dark .sp-card h4 { color: #fff; }
+.sp-card p { font-size: 13px; line-height: 1.65; color: var(--gray); }
+.sp-section.dark .sp-card p { color: rgba(255,255,255,0.45); }
+
+.sp-split { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 8vw, 100px); align-items: center; margin-top: 80px; }
+.sp-split.reverse { grid-template-columns: 1.1fr 1fr; }
+.sp-img { width: 100%; height: 560px; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.2); }
+.sp-section.dark .sp-img { box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+.sp-img img { width: 100%; height: 100%; object-fit: cover; }
+.sp-bullets { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.sp-bullets li { padding-left: 22px; position: relative; font-size: 15px; color: var(--gray); }
+.sp-section.dark .sp-bullets li { color: rgba(255,255,255,0.6); }
+.sp-bullets li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.sp-table-wrap { margin-top: 80px; overflow-x: auto; }
+.sp-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.sp-table th { padding: 20px 24px; text-align: left; font-family: var(--ff-h); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid var(--accent); color: rgba(255,255,255,0.4); }
+.sp-table td { padding: 22px 24px; font-size: 16px; border-bottom: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); font-family: var(--ff-h); font-weight: 600; }
+.sp-table tr:last-child td { border-bottom: none; }
+
+.sp-strip { background: var(--accent); padding: clamp(60px, 8vw, 100px) var(--pad); text-align: center; }
+.sp-strip h2 { font-family: var(--ff-h); font-size: clamp(32px, 5vw, 64px); font-weight: 800; color: #fff; letter-spacing: -2px; margin-bottom: 16px; }
+.sp-strip p { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
+.sp-cta { background: var(--light); padding: clamp(60px, 10vw, 120px) var(--pad); text-align: center; }
+.btn-primary { 
+    display: inline-block; padding: 18px 56px; background: var(--accent); color: #fff; 
+    font-family: var(--ff-h); font-size: 16px; font-weight: 700; border-radius: 100px; 
+    text-decoration: none; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    position: relative; overflow: hidden; z-index: 1;
+}
+.btn-primary::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+    background: rgba(255,255,255,0.15); z-index: -1;
+    transition: width 0.4s ease;
+}
+.btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(255,138,0,0.35); }
+.btn-primary:hover::before { width: 100%; }
+
+.sp-footer { background: var(--black); padding: 32px var(--pad); display: flex; align-items: center; justify-content: space-between; }
+.sp-footer span { color: rgba(255,255,255,0.4); font-size: 13px; }
+.sp-footer .status { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 13px; }
+.sp-footer .dot { width: 8px; height: 8px; border-radius: 50%; background: #00e676; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.js-on .rv { opacity: 0; transform: translateY(48px); }
+.js-on .rv.from-l { transform: translateX(-48px); }
+.js-on .rv.from-r { transform: translateX(48px); }
+
+@media (max-width: 1100px) {
+    .sp-hero-content { flex-direction: column; align-items: flex-start; }
+    .sp-hero-card { min-width: unset; width: 100%; max-width: 100%; }
+    .sp-split, .sp-split.reverse { grid-template-columns: 1fr; }
+    .sp-img { height: 360px; }
+    .sp-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .sp-hero { height: auto; min-height: 100svh; padding-top: 100px; padding-bottom: 60px; }
+    .sp-hero h1 { letter-spacing: -1px; font-size: clamp(48px, 12vw, 80px); line-height: 0.9; }
+    .sp-hero-tag { margin-bottom: 16px; padding: 6px 14px; font-size: 10px; }
+    .sp-cards { grid-template-columns: 1fr; gap: 16px; }
+    .sp-split .sp-img { height: 280px; }
+    .sp-footer { flex-direction: column; gap: 16px; text-align: center; }
+    .sp-nav .nav-btns .btn-back { display: none; }
+}
+@media (max-width: 480px) { .sp-cards { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="sp-nav" id="spNav">
+  <a href="freightforce.html" class="logo">Freight<span>Force</span></a>
+  <div class="nav-btns">
+    <a href="freightforce.html#contact" class="btn-cta">Hire Fleet</a>
+    <a href="freightforce.html" class="btn-back">← Back</a>
+  </div>
+</nav>
+
+<section class="sp-hero">
+    <div class="sp-hero-bg" id="heroBg"></div>
+    <div class="sp-hero-overlay"></div>
+    <div class="sp-hero-content">
+        <div class="sp-hero-left rv">
+            <span class="sp-hero-tag">03 — Continental Network</span>
+            <h1>Road<br><span>Haulage.</span></h1>
+            <p class="sp-hero-desc">Building the smartest ground network across the continent. Delivering door-to-door with hyper-accurate tracking and specialized hauling for every load type.</p>
+        </div>
+        <div class="sp-hero-card rv">
+            <h4>Ground Supremacy</h4>
+            <p>Our fleet of 2,400+ modern vehicles is integrated with intelligent sensors monitoring driver behaviour, traffic, and fuel efficiency in real-time.</p>
+            <div class="sp-hero-card-stats">
+                <div class="stat-item"><b>2.4K+</b><span>Fleet Units</span></div>
+                <div class="stat-item"><b>60+</b><span>Countries</span></div>
+                <div class="stat-item"><b>60m</b><span>Pickup Lock</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FLEET -->
+<section class="sp-section light">
+    <div class="rv">
+        <span class="sp-label">Modern Fleet</span>
+        <h2 class="sp-h2">Purpose-built vehicles<br>for <span>every challenge.</span></h2>
+        <p class="sp-body">Our active fleet covers the full spectrum of ground requirements — from hyper-local city deliveries to continent-spanning heavy haulage.</p>
+    </div>
+    <div class="sp-cards">
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">local_shipping</span></span>
+            <h4>Mega Trucks</h4>
+            <p>High-volume FTL transport across major continental corridors with 26-tonne capacity.</p>
+        </div>
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">airport_shuttle</span></span>
+            <h4>Sprinter Vans</h4>
+            <p>Urgent small-parcel city delivery with real-time POD. 60-minute pickup lock guaranteed.</p>
+        </div>
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">ac_unit</span></span>
+            <h4>Reefer Units</h4>
+            <p>Temperature-controlled ground transit for pharma, fresh produce, and cold-chain goods.</p>
+        </div>
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">construction</span></span>
+            <h4>Heavy Loaders</h4>
+            <p>Flatbed and drop-deck units for oversized industrial machinery and OOG project cargo.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ROUTING SPLIT -->
+<section class="sp-section dark">
+    <span class="sp-label rv">AI Routing</span>
+    <h2 class="sp-h2 rv" style="color:#fff;">Beating traffic with<br><span>smart intelligence.</span></h2>
+    <div class="sp-split">
+        <div class="rv from-l">
+            <p class="sp-body onDark">Every FreightForce vehicle is a mobile data node. Our central system analyses live traffic density, weather forecasts, and driver diagnostics to dynamically re-route, ensuring your delivery window is never broken.</p>
+            <ul class="sp-bullets">
+                <li>Automated Electronic Proof of Delivery (ePOD)</li>
+                <li>Dynamic Hub Re-routing in real time</li>
+                <li>Electronic Logging Device (ELD) compliance</li>
+                <li>Smart fuel optimisation per route</li>
+                <li>Driver safety scoring & live alerts</li>
+                <li>Carbon-neutral haulage options</li>
+            </ul>
+        </div>
+        <div class="sp-img rv from-r">
+            <img src="heavy_truck_highway_1776058158449.png" alt="Truck On Highway" loading="lazy">
+        </div>
+    </div>
+
+    <div class="sp-table-wrap rv" style="margin-top:100px;">
+        <h3 style="color:#fff; font-family:var(--ff-h); font-size:28px; margin-bottom:40px;">Fleet Specifications.</h3>
+        <table class="sp-table">
+            <thead><tr><th>Vehicle</th><th>Capacity</th><th>Coverage</th></tr></thead>
+            <tbody>
+                <tr><td>Mega Trucks (FTL)</td><td>Up to 26 Metric Tonnes</td><td style="color:var(--accent)">Continental Routes</td></tr>
+                <tr><td>Sprinter Vans</td><td>Up to 1.5 Metric Tonnes</td><td style="color:var(--accent)">City & Last Mile</td></tr>
+                <tr><td>Flatbed / Drop-Deck</td><td>OOG / Oversized</td><td style="color:var(--accent)">Special Projects</td></tr>
+                <tr><td>Refrigerated Units</td><td>-30°C to +25°C</td><td style="color:var(--accent)">Cold Chain Lanes</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- LAST MILE -->
+<section class="sp-section light">
+    <span class="sp-label rv">Last Mile</span>
+    <h2 class="sp-h2 rv">Hyper-local urban<br><span>distribution.</span></h2>
+    <div class="sp-split reverse">
+        <div class="sp-img rv from-l">
+            <img src="last_mile_delivery_van_1776058181184.png" alt="City Last Mile Delivery" loading="lazy">
+        </div>
+        <div class="rv from-r">
+            <p class="sp-body">We bridge the gap between global shipping and the customer's doorstep. Our last-mile hubs are located within 30 minutes of major urban centres for rapid final dispatch.</p>
+            <ul class="sp-bullets" style="margin-top:28px;">
+                <li>Returns management & reverse logistics</li>
+                <li>Proof of delivery with photo capture</li>
+                <li>Flexible time-slot delivery windows</li>
+                <li>Subscription-based parcel routing</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="sp-strip rv">
+    <h2>Connecting Continental Hubs.</h2>
+    <p>Paris — Berlin — Milan — Madrid — Warsaw — Amsterdam</p>
+</div>
+
+<section class="sp-cta">
+    <div class="rv">
+        <span class="sp-label" style="display:block; margin-bottom:16px;">Dispatch Ready</span>
+        <h2 class="sp-h2">Need a truck today?</h2>
+        <p class="sp-body" style="margin: 20px auto 40px; text-align:center;">Direct dispatch available across the entire ground network. Lock in your pickup in minutes.</p>
+        <a href="freightforce.html#contact" class="btn-primary">Book Fleet Dispatch</a>
+    </div>
+</section>
+
+<footer class="sp-footer">
+    <span>© 2026-2027 FreightForce Road Haulage Solutions.</span>
+    <div class="status"><div class="dot"></div>Fleet Monitoring: Active</div>
+</footer>
+
+<script>
+    document.documentElement.classList.add('js-on');
+    gsap.registerPlugin(ScrollTrigger);
+    const nav = document.getElementById('spNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    gsap.to("#heroBg", { yPercent: 18, ease: "none", scrollTrigger: { trigger: ".sp-hero", scrub: true } });
+    document.querySelectorAll('.rv').forEach(el => {
+        gsap.fromTo(el,
+            { opacity: 0, y: el.classList.contains('from-l') ? 0 : el.classList.contains('from-r') ? 0 : 48, x: el.classList.contains('from-l') ? -48 : el.classList.contains('from-r') ? 48 : 0 },
+            { opacity: 1, y: 0, x: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 92%" } }
+        );
+    });
+</script>
+</body>
+</html>

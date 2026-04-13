@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Freight — FreightForce</title>
+<meta name="description" content="FreightForce Air Freight: 200+ airports, NFO priority, charter capability, and cold-chain air solutions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<style>
+/* ── RESET & VARS ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+    --accent: #FF8A00;
+    --black: #0a0a0a;
+    --white: #fff;
+    --gray: #666;
+    --light: #f7f8fc;
+    --pad: clamp(20px, 6vw, 90px);
+    --ff-h: 'Plus Jakarta Sans', sans-serif;
+    --ff-b: 'Inter', sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff-b); background: var(--white); color: var(--black); overflow-x: hidden; }
+
+.sp-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px var(--pad);
+    background: transparent;
+    transition: background 0.4s ease, padding 0.4s ease;
+}
+.sp-nav.scrolled {
+  background: rgba(5,5,5,0.94);
+  backdrop-filter: blur(20px);
+  padding: 12px var(--pad);
+}
+@media (max-width: 768px) {
+  .sp-nav { padding: 16px var(--pad); background: rgba(5,5,5,0.4); backdrop-filter: blur(10px); }
+  .sp-nav .logo { font-size: 16px; }
+  .sp-nav .btn-cta { padding: 8px 16px; font-size: 11px; }
+}
+.sp-nav .logo { font-family: var(--ff-h); font-size: 20px; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; }
+.sp-nav .logo span { color: var(--accent); }
+.sp-nav .nav-btns { display: flex; gap: 12px; }
+.sp-nav .btn-back { padding: 10px 22px; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25); color: #fff; background: rgba(255,255,255,0.08); font-family: var(--ff-h); font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; }
+.sp-nav .btn-back:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+.sp-nav .btn-cta { 
+    padding: 10px 24px; border-radius: 100px; 
+    background: linear-gradient(135deg, #FF8A00 0%, #FF5C00 100%); 
+    color: #fff !important; font-family: var(--ff-h); font-size: 13px; font-weight: 800; 
+    text-decoration: none; letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative; overflow: hidden; z-index: 1;
+    display: inline-flex; align-items: center;
+    box-shadow: 0 4px 15px rgba(255,138,0,0.3);
+}
+.sp-nav .btn-cta::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.6s ease;
+}
+.sp-nav .btn-cta:hover { 
+    transform: translateY(-2px) scale(1.05); 
+    box-shadow: 0 8px 25px rgba(255,138,0,0.5); 
+}
+.sp-nav .btn-cta:hover::before { left: 100%; }
+
+
+.sp-hero { height: 100vh; min-height: 600px; position: relative; overflow: hidden; display: flex; align-items: center; padding: 0 var(--pad); }
+.sp-hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80&w=1800') center/cover no-repeat;
+    transform: scale(1.08);
+}
+.sp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.55) 100%); }
+.sp-hero-content { position: relative; z-index: 2; width: 100%; max-width: 1300px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+.sp-hero-left { max-width: 700px; }
+.sp-hero-tag { display: inline-block; color: var(--accent); font-family: var(--ff-h); font-size: 11px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 24px; padding: 8px 16px; border: 1px solid rgba(255,138,0,0.4); border-radius: 100px; background: rgba(255,138,0,0.08); }
+.sp-hero h1 { font-family: var(--ff-h); font-size: clamp(56px, 10vw, 140px); line-height: 0.85; color: #fff; font-weight: 800; letter-spacing: -3px; margin-bottom: 28px; }
+.sp-hero h1 span { color: var(--accent); }
+.sp-hero-desc { color: rgba(255,255,255,0.65); font-size: clamp(15px, 2vw, 19px); line-height: 1.65; max-width: 520px; }
+.sp-hero-card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(30px) saturate(1.4);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 32px; padding: 32px;
+    width: 100%; max-width: 420px; flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .sp-hero-card { padding: 24px; border-radius: 24px; }
+}
+.sp-hero-card h4 { color: #fff; font-family: var(--ff-h); font-size: 18px; margin-bottom: 14px; }
+.sp-hero-card p { color: rgba(255,255,255,0.55); font-size: 14px; line-height: 1.7; }
+.sp-hero-card-stats { display: flex; gap: 24px; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+.stat-item b { display: block; font-family: var(--ff-h); font-size: clamp(20px, 4vw, 26px); color: var(--accent); margin-bottom: 4px; }
+.stat-item span { font-size: 9px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; line-height: 1.3; }
+@media (max-width: 480px) {
+    .sp-hero-card-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .sp-hero-card-stats .stat-item:last-child { grid-column: span 2; }
+}
+
+.sp-section { padding: clamp(60px, 10vw, 130px) var(--pad); }
+.sp-section.dark { background: var(--black); color: #fff; }
+.sp-section.light { background: var(--light); }
+.sp-label { font-family: var(--ff-h); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; color: var(--accent); margin-bottom: 16px; display: block; }
+.sp-h2 { font-family: var(--ff-h); font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 1.0; letter-spacing: -2px; margin-bottom: 24px; }
+.sp-h2 span { color: var(--accent); }
+.sp-body { font-size: 18px; line-height: 1.7; color: var(--gray); max-width: 700px; }
+.sp-body.onDark { color: rgba(255,255,255,0.5); }
+
+.sp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 70px; }
+.sp-card { padding: 40px 36px; border-radius: 32px; background: var(--white); border: 1px solid rgba(0,0,0,0.06); transition: all 0.5s cubic-bezier(.22,.8,.2,1); }
+.sp-section.dark .sp-card { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.07); }
+.sp-card:hover { transform: translateY(-16px); box-shadow: 0 32px 80px rgba(0,0,0,0.08); border-color: rgba(255,138,0,0.25); }
+.sp-section.dark .sp-card:hover { background: rgba(255,138,0,0.07); }
+.sp-card-icon { font-size: 44px; margin-bottom: 24px; display: block; }
+.sp-card h4 { font-family: var(--ff-h); font-size: 22px; font-weight: 700; margin-bottom: 14px; }
+.sp-section.dark .sp-card h4 { color: #fff; }
+.sp-card p { font-size: 15px; line-height: 1.7; color: var(--gray); }
+.sp-section.dark .sp-card p { color: rgba(255,255,255,0.45); }
+
+.sp-split { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(40px, 8vw, 100px); align-items: center; margin-top: 80px; }
+.sp-split.reverse { grid-template-columns: 1.1fr 1fr; }
+.sp-img { width: 100%; height: 560px; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.25); }
+.sp-section.dark .sp-img { box-shadow: 0 40px 100px rgba(0,0,0,0.6); }
+.sp-img img { width: 100%; height: 100%; object-fit: cover; }
+.sp-bullets { list-style: none; margin-top: 32px; display: flex; flex-direction: column; gap: 14px; }
+.sp-bullets li { padding-left: 22px; position: relative; font-size: 15px; color: var(--gray); }
+.sp-section.dark .sp-bullets li { color: rgba(255,255,255,0.6); }
+.sp-bullets li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+.sp-table-wrap { margin-top: 80px; overflow-x: auto; }
+.sp-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.sp-table th { padding: 20px 24px; text-align: left; font-family: var(--ff-h); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid var(--accent); color: rgba(255,255,255,0.4); }
+.sp-table td { padding: 22px 24px; font-size: 17px; border-bottom: 1px solid rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); font-family: var(--ff-h); font-weight: 600; }
+.sp-table tr:last-child td { border-bottom: none; }
+
+/* Tiers */
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 70px; }
+.tier-card { padding: 40px; border-radius: 32px; background: var(--white); border: 1px solid rgba(0,0,0,0.06); position: relative; overflow: hidden; transition: all 0.4s; }
+.tier-card.featured { background: var(--accent); border-color: var(--accent); }
+.tier-card.featured * { color: #fff !important; }
+.tier-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
+.tier-label { font-family: var(--ff-h); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 16px; display: block; }
+.tier-card.featured .tier-label { color: rgba(255,255,255,0.7) !important; }
+.tier-card h4 { font-family: var(--ff-h); font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+.tier-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+.tier-time { font-family: var(--ff-h); font-size: 40px; font-weight: 800; color: var(--accent); margin-top: 24px; display: block; }
+.tier-card.featured .tier-time { color: #fff !important; }
+
+.sp-strip { background: var(--accent); padding: clamp(60px, 8vw, 100px) var(--pad); text-align: center; }
+.sp-strip h2 { font-family: var(--ff-h); font-size: clamp(32px, 5vw, 64px); font-weight: 800; color: #fff; letter-spacing: -2px; margin-bottom: 16px; }
+.sp-strip p { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
+
+.sp-cta { background: var(--light); padding: clamp(60px, 10vw, 120px) var(--pad); text-align: center; }
+.btn-primary { 
+    display: inline-block; padding: 18px 56px; background: var(--accent); color: #fff; 
+    font-family: var(--ff-h); font-size: 16px; font-weight: 700; border-radius: 100px; 
+    text-decoration: none; letter-spacing: 0.5px; 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative; overflow: hidden; z-index: 1;
+}
+.btn-primary::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+    background: rgba(255,255,255,0.15); z-index: -1;
+    transition: width 0.4s ease;
+}
+.btn-primary:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 20px 40px rgba(255,138,0,0.35); }
+.btn-primary:hover::before { width: 100%; }
+
+
+.sp-footer { background: var(--black); padding: 32px var(--pad); display: flex; align-items: center; justify-content: space-between; }
+.sp-footer span { color: rgba(255,255,255,0.4); font-size: 13px; }
+.sp-footer .status { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.4); font-size: 13px; }
+.sp-footer .dot { width: 8px; height: 8px; border-radius: 50%; background: #00e676; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+.js-on .rv { opacity: 0; transform: translateY(48px); }
+.js-on .rv.from-l { transform: translateX(-48px); }
+.js-on .rv.from-r { transform: translateX(48px); }
+
+@media (max-width: 1100px) {
+    .sp-hero-content { flex-direction: column; align-items: flex-start; }
+    .sp-hero-card { min-width: unset; width: 100%; max-width: 100%; }
+    .sp-split, .sp-split.reverse { grid-template-columns: 1fr; }
+    .sp-split .sp-img { height: 380px; }
+    .sp-cards, .tier-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .sp-hero { height: auto; min-height: 100svh; padding-top: 100px; padding-bottom: 60px; }
+    .sp-hero h1 { letter-spacing: -1px; font-size: clamp(48px, 12vw, 80px); line-height: 0.9; }
+    .sp-hero-tag { margin-bottom: 16px; padding: 6px 14px; font-size: 10px; }
+    .sp-cards, .tier-grid { grid-template-columns: 1fr; gap: 16px; }
+    .sp-split .sp-img { height: 280px; }
+    .sp-footer { flex-direction: column; gap: 16px; text-align: center; }
+    .sp-nav .nav-btns .btn-back { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="sp-nav" id="spNav">
+  <a href="freightforce.html" class="logo">Freight<span>Force</span></a>
+  <div class="nav-btns">
+    <a href="freightforce.html#contact" class="btn-cta">Fast Track Quote</a>
+    <a href="freightforce.html" class="btn-back">← Back</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="sp-hero">
+    <div class="sp-hero-bg" id="heroBg"></div>
+    <div class="sp-hero-overlay"></div>
+    <div class="sp-hero-content">
+        <div class="sp-hero-left rv">
+            <span class="sp-hero-tag">02 — Velocity Logistics</span>
+            <h1>Air<br><span>Priority.</span></h1>
+            <p class="sp-hero-desc">When every minute matters. Connecting your most urgent supply chain assets across 200+ airports worldwide with guaranteed, dedicated capacity.</p>
+        </div>
+        <div class="sp-hero-card rv">
+            <h4>Aerial Reach</h4>
+            <p>Certified IATA carrier status, leveraging partnerships with top-tier airlines to guarantee boarding on the very next flight out.</p>
+            <div class="sp-hero-card-stats">
+                <div class="stat-item"><b>24h</b><span>Global Dispatch</span></div>
+                <div class="stat-item"><b>200+</b><span>Airports</span></div>
+                <div class="stat-item"><b>NFO</b><span>Capability</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICE TIERS -->
+<section class="sp-section light">
+    <div class="rv">
+        <span class="sp-label">Speed Levels</span>
+        <h2 class="sp-h2">Choose your<br><span>velocity.</span></h2>
+        <p class="sp-body">Every cargo category gets the exact speed it demands — from critical 24h transit to economical consolidated air.</p>
+    </div>
+    <div class="tier-grid">
+        <div class="tier-card rv">
+            <span class="tier-label">Priority</span>
+            <h4>Next Flight Out</h4>
+            <p>Immediate boarding on the very next available flight. Fastest possible transit for mission-critical cargo.</p>
+            <span class="tier-time">18–24h</span>
+        </div>
+        <div class="tier-card featured rv">
+            <span class="tier-label">Most Popular</span>
+            <h4>First Class Air</h4>
+            <p>Scheduled sailings on premium airlines with priority handling and real-time door-to-door tracking.</p>
+            <span class="tier-time">3–5 Days</span>
+        </div>
+        <div class="tier-card rv">
+            <span class="tier-label">Economy</span>
+            <h4>Consolidated Air</h4>
+            <p>Cost-efficient air freight for bulk shipments, optimised through our own cargo consolidation hubs.</p>
+            <span class="tier-time">5–7 Days</span>
+        </div>
+    </div>
+</section>
+
+<!-- CAPABILITY -->
+<section class="sp-section dark">
+    <span class="sp-label rv">Core Capabilities</span>
+    <h2 class="sp-h2 rv" style="color:#fff;">Specialized handling<br>for <span>every cargo type.</span></h2>
+    <div class="sp-cards">
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">rocket_launch</span></span>
+            <h4>Priority Express</h4>
+            <p>Next-flight-out boarding with immediate retrieval at destination for the most time-sensitive assets.</p>
+        </div>
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">flight</span></span>
+            <h4>Full Charter</h4>
+            <p>Dedicated aircraft for oversized or heavy-lift cargo with complete control over schedules and routes.</p>
+        </div>
+        <div class="sp-card rv">
+            <span class="sp-card-icon"><span class="material-symbols-outlined" style="font-size:inherit;">ac_unit</span></span>
+            <h4>Cold Chain Air</h4>
+            <p>Validated temperature environments for pharma and perishables with real-time in-flight reporting.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HUBS SPLIT -->
+<section class="sp-section light">
+    <span class="sp-label rv">Global Presence</span>
+    <h2 class="sp-h2 rv">Strategic hubs at<br>the world's <span>nexus points.</span></h2>
+    <div class="sp-split">
+        <div class="rv from-l">
+            <p class="sp-body">Our network is anchored at the world's most critical air-trade hubs. On-ground FreightForce teams ensure immediate sorting, customs pre-clearance, and instant last-mile handover.</p>
+            <ul class="sp-bullets">
+                <li>IATA Certified Cargo Handling</li>
+                <li>TAPA-A Secure Transit Protocols</li>
+                <li>Automated Track & Trace Integration</li>
+                <li>Express Customs Pre-filing</li>
+                <li>High-value Escort (VAL cargo)</li>
+                <li>Dangerous Goods (Class 1–9) Certified</li>
+            </ul>
+        </div>
+        <div class="sp-img rv from-r">
+            <img src="air_cargo_terminal_operations_1776057936669.png" alt="Air Cargo Terminal Operations" loading="lazy">
+        </div>
+    </div>
+
+    <div class="sp-table-wrap rv" style="margin-top:80px; background:var(--black); padding:40px; border-radius:32px;">
+        <h3 style="color:#fff; font-family:var(--ff-h); font-size:24px; margin-bottom:32px;">Aerial Specifications.</h3>
+        <table class="sp-table">
+            <thead><tr><th>Feature</th><th>Service Tier</th><th>Availability</th></tr></thead>
+            <tbody>
+                <tr><td>Next Flight Out</td><td>18–24 Hours</td><td style="color:var(--accent)">✓ 200+ Airports</td></tr>
+                <tr><td>Standard Air</td><td>3–5 Days</td><td style="color:var(--accent)">✓ Global Coverage</td></tr>
+                <tr><td>Dangerous Goods</td><td>IMDG Class 1–9</td><td style="color:var(--accent)">✓ Select Routes</td></tr>
+                <tr><td>Valuables (VAL)</td><td>High-Security Escort</td><td style="color:var(--accent)">✓ On Demand</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- COLD CHAIN DETAIL -->
+<section class="sp-section dark">
+    <span class="sp-label rv">Pharma & Perishables</span>
+    <h2 class="sp-h2 rv" style="color:#fff;">Temperature-controlled<br><span>air corridors.</span></h2>
+    <div class="sp-split">
+        <div class="rv from-l">
+            <p class="sp-body onDark">FreightForce maintains dedicated cold-chain air lanes validated against GDP guidelines and monitored with active IoT sensors throughout transit. Perfect for biologics, vaccines, and temperature-sensitive consumer goods.</p>
+            <ul class="sp-bullets">
+                <li>Active temp monitoring every 10 mins</li>
+                <li>GDP-compliant packaging & labelling</li>
+                <li>Direct regulatory documentation support</li>
+                <li>Emergency re-icing protocols in transit</li>
+            </ul>
+        </div>
+        <div class="sp-img rv from-r">
+            <img src="cold_chain_air_freight_1776057901888.png" alt="Cold Chain Cargo" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<div class="sp-strip rv">
+    <h2>Connecting Global Capital in Real Time.</h2>
+    <p>London — New York — Dubai — Singapore — Tokyo</p>
+</div>
+
+<section class="sp-cta">
+    <div class="rv">
+        <span class="sp-label" style="display:block; margin-bottom:16px;">Ready for takeoff?</span>
+        <h2 class="sp-h2">Request your air quote.</h2>
+        <p class="sp-body" style="margin: 20px auto 40px; text-align:center;">Book an air slot on the next departure in seconds through our intelligent dispatch portal.</p>
+        <a href="freightforce.html#contact" class="btn-primary">Book Air Freight</a>
+    </div>
+</section>
+
+<footer class="sp-footer">
+    <span>© 2026-2027 FreightForce Express Air Logistics.</span>
+    <div class="status"><div class="dot"></div>Air Network: Optimized</div>
+</footer>
+
+<script>
+    document.documentElement.classList.add('js-on');
+    gsap.registerPlugin(ScrollTrigger);
+    const nav = document.getElementById('spNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    gsap.to("#heroBg", { yPercent: 18, ease: "none", scrollTrigger: { trigger: ".sp-hero", scrub: true } });
+    document.querySelectorAll('.rv').forEach(el => {
+        gsap.fromTo(el,
+            { opacity: 0, y: el.classList.contains('from-l') ? 0 : el.classList.contains('from-r') ? 0 : 48, x: el.classList.contains('from-l') ? -48 : el.classList.contains('from-r') ? 48 : 0 },
+            { opacity: 1, y: 0, x: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: el, start: "top 92%" } }
+        );
+    });
+</script>
+</body>
+</html>

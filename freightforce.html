@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreightForce — Global Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <meta name="theme-color" content="#ffffff">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=2.0">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+
+  <div id="cur"></div>
+  <div id="cur2"></div>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="ld-logo">Freight<em>Force</em></div>
+    <div class="ld-track">
+      <div class="ld-fill" id="ldFill"></div>
+    </div>
+    <div class="ld-num" id="ldNum">0</div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#home" class="n-logo">Freight<span>Force</span></a>
+    <ul class="n-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#analytics">Analytics</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="n-r">
+      <a href="#contact" class="btn btn-g">Track Cargo</a>
+      <a href="#contact" class="btn btn-o">Get a Quote</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-photo"></div>
+    <div class="hero-grad"></div>
+    <div class="hero-grad2"></div>
+    <div class="hero-inner">
+      <span class="reveal from-top"
+        style="color:var(--orange); font-weight:800; letter-spacing:2px; text-transform:uppercase; font-size:12px;">Global
+        Logistics Excellence</span>
+      <h1 class="reveal from-left">Moving industry<br><span>at the speed of now.</span></h1>
+      <div class="hero-btns reveal from-bottom" style="transition-delay:0.4s">
+        <a href="#services" class="btn btn-o">Our Solutions</a>
+        <a href="#contact" class="btn btn-g">Get a Quote</a>
+      </div>
+    </div>
+    <div class="hero-kpis">
+      <div class="kpi">
+        <div class="kpi-n">1.5M+</div>
+        <div class="kpi-l">Shipments</div>
+      </div>
+      <div class="kpi" style="border-left:none">
+        <div class="kpi-n">99%</div>
+        <div class="kpi-l">On-Time</div>
+      </div>
+      <div class="kpi" style="border-left:none">
+        <div class="kpi-n">140+</div>
+        <div class="kpi-l">Countries</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-t" id="tickerTrack">
+      <div class="ticker-i"><span class="dot"></span>Ocean Freight</div>
+      <div class="ticker-i"><span class="dot"></span>Air Cargo</div>
+      <div class="ticker-i"><span class="dot"></span>Road Logistics</div>
+      <div class="ticker-i"><span class="dot"></span>Customs Clearance</div>
+      <div class="ticker-i"><span class="dot"></span>Cold Chain</div>
+      <div class="ticker-i"><span class="dot"></span>Last Mile Delivery</div>
+      <div class="ticker-i"><span class="dot"></span>Warehousing</div>
+      <div class="ticker-i"><span class="dot"></span>Supply Chain</div>
+      <div class="ticker-i"><span class="dot"></span>Ocean Freight</div>
+      <div class="ticker-i"><span class="dot"></span>Air Cargo</div>
+      <div class="ticker-i"><span class="dot"></span>Road Logistics</div>
+      <div class="ticker-i"><span class="dot"></span>Customs Clearance</div>
+      <div class="ticker-i"><span class="dot"></span>Cold Chain</div>
+      <div class="ticker-i"><span class="dot"></span>Last Mile Delivery</div>
+      <div class="ticker-i"><span class="dot"></span>Warehousing</div>
+      <div class="ticker-i"><span class="dot"></span>Supply Chain</div>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="sec" id="about" style="background:var(--bg)">
+    <div class="about-grid">
+      <div class="about-txt reveal">
+        <div class="sec-tag">Who We Are</div>
+        <h2>We deliver more than cargo.</h2>
+        <p class="sec-p">We deliver trust, peace of mind, and exceptional value. FreightForce is the backbone of global
+          supply chains — trusted by Fortune 500 companies and growing businesses alike.</p>
+        <ul class="about-bullets">
+          <li>Full-spectrum logistics across sea, air, and road</li>
+          <li>Real-time tracking across every shipment touchpoint</li>
+          <li>ISO-certified warehousing across 60+ hubs globally</li>
+          <li>Dedicated account managers for every client tier</li>
+        </ul>
+        <a href="#" class="btn btn-o">Our Story →</a>
+      </div>
+      <div class="about-imgs reveal from-right" id="tilt-imgs">
+        <div class="ai-ghost">01</div>
+        <div class="ai-main">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Warehouse"
+            loading="lazy">
+        </div>
+        <div class="ai-sub">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="Cargo ship"
+            loading="lazy">
+        </div>
+        <div class="ai-badge">ISO 9001:2015</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="srv-section" id="services">
+    <div class="srv-header">
+      <div class="reveal">
+        <div class="sec-tag">What We Move</div>
+        <h2>Seamless comprehensive<br>logistics solutions.</h2>
+      </div>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card" data-tilt>
+        <span class="srv-n">01</span>
+        <div class="srv-ico">
+          <svg viewBox="0 0 44 44" fill="none">
+            <path d="M4 34L7.5 20H36.5L40 34" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M2 34H42" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round" />
+            <rect x="7" y="23" width="30" height="9" rx="1" stroke="#FF6B00" stroke-width=".9" opacity=".45" />
+            <circle cx="12" cy="37" r="2.8" stroke="#FF6B00" stroke-width="1.4" />
+            <circle cx="32" cy="37" r="2.8" stroke="#FF6B00" stroke-width="1.4" />
+            <path d="M22 14V20M22 14L19 17M22 14L25 17" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="srv-t">Ocean Freight</div>
+        <p class="srv-d">FCL and LCL shipping across global sea lanes. Real-time port tracking with full customs
+          management.</p>
+        <a href="ocean-freight.html" class="srv-a">Explore <span>→</span></a>
+      </div>
+      <div class="srv-card" data-tilt>
+        <span class="srv-n">02</span>
+        <div class="srv-ico">
+          <svg viewBox="0 0 44 44" fill="none">
+            <path d="M5 26L22 11L39 26" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M11 21L5 26L10 30" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M33 21L39 26L34 30" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M15 33H29" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M22 11V8" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round" />
+            <circle cx="22" cy="6" r="1.8" fill="#FF6B00" opacity=".6" />
+          </svg>
+        </div>
+        <div class="srv-t">Air Freight</div>
+        <p class="srv-d">Express cargo for time-critical shipments. Next-day delivery to 200+ airports worldwide.</p>
+        <a href="air-freight.html" class="srv-a">Explore <span>→</span></a>
+      </div>
+      <div class="srv-card" data-tilt>
+        <span class="srv-n">03</span>
+        <div class="srv-ico">
+          <svg viewBox="0 0 44 44" fill="none">
+            <rect x="3" y="20" width="26" height="15" rx="2" stroke="#FF6B00" stroke-width="1.4" />
+            <path d="M29 24H37L41 30V35H29V24Z" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <circle cx="12" cy="38" r="2.8" stroke="#FF6B00" stroke-width="1.4" />
+            <circle cx="35" cy="38" r="2.8" stroke="#FF6B00" stroke-width="1.4" />
+            <path d="M3 26H1M3 30H1" stroke="#FF6B00" stroke-width=".9" stroke-linecap="round" opacity=".5" />
+          </svg>
+        </div>
+        <div class="srv-t">Road Transport</div>
+        <p class="srv-d">FTL and LTL trucking with GPS fleet covering 60+ countries. Hazmat and temperature-controlled
+          options.</p>
+        <a href="road-transport.html" class="srv-a">Explore <span>→</span></a>
+      </div>
+      <div class="srv-card" data-tilt>
+        <span class="srv-n">04</span>
+        <div class="srv-ico">
+          <svg viewBox="0 0 44 44" fill="none">
+            <rect x="5" y="18" width="34" height="20" rx="2" stroke="#FF6B00" stroke-width="1.4" />
+            <path d="M5 24H39" stroke="#FF6B00" stroke-width=".9" opacity=".4" />
+            <path d="M14 18V13L22 9L30 13V18" stroke="#FF6B00" stroke-width="1.4" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <rect x="16" y="29" width="12" height="9" rx="1" stroke="#FF6B00" stroke-width=".9" opacity=".6" />
+            <path d="M22 29V38" stroke="#FF6B00" stroke-width=".9" opacity=".4" />
+          </svg>
+        </div>
+        <div class="srv-t">Warehousing</div>
+        <p class="srv-d">Secure climate-controlled storage with automated inventory management across 6 continents.</p>
+        <a href="warehousing.html" class="srv-a">Explore <span>→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ANALYTICS ═══ -->
+  <section class="ana-section" id="analytics">
+    <div class="ana-grid">
+      <div>
+        <div class="reveal">
+          <div class="sec-tag">Live Intelligence</div>
+          <h2>Shipment analytics.</h2>
+        </div>
+        <div class="chart-box reveal">
+          <div class="chart-hd"><span class="chart-ht">Monthly Volume</span><span class="badge-g">↑ 18.4% YoY</span>
+          </div>
+          <div class="bars" id="barsEl">
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:55%"></div>
+              </div><span class="bar-lbl">Jan</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:70%"></div>
+              </div><span class="bar-lbl">Feb</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:62%"></div>
+              </div><span class="bar-lbl">Mar</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:85%"></div>
+              </div><span class="bar-lbl">Apr</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:74%"></div>
+              </div><span class="bar-lbl">May</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:91%"></div>
+              </div><span class="bar-lbl">Jun</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:80%"></div>
+              </div><span class="bar-lbl">Jul</span>
+            </div>
+            <div class="bar-c">
+              <div class="bar-w">
+                <div class="bar" style="height:100%"></div>
+              </div><span class="bar-lbl">Aug</span>
+            </div>
+          </div>
+        </div>
+        <div class="lc-box reveal">
+          <div class="lc-title">Delivery Success Rate (trailing 12mo)</div>
+          <canvas id="lc" width="400" height="70"></canvas>
+        </div>
+      </div>
+      <div class="m-cards">
+        <div class="m-card reveal from-right">
+          <div class="m-num"><span id="cn1">0</span><span class="sfx">M</span></div>
+          <div>
+            <div class="m-lbl">Total Deliveries</div>
+            <div class="m-sub">Since founding in 2008</div>
+          </div>
+          <div class="m-badge">+12%</div>
+        </div>
+        <div class="m-card reveal from-right">
+          <div class="m-num"><span id="cn2">0</span><span class="sfx">%</span></div>
+          <div>
+            <div class="m-lbl">Success Rate</div>
+            <div class="m-sub">On-time delivery globally</div>
+          </div>
+          <div class="m-badge">↑ 0.4%</div>
+        </div>
+        <div class="m-card reveal from-right">
+          <div class="m-num"><span id="cn3">0</span><span class="sfx">+</span></div>
+          <div>
+            <div class="m-lbl">Countries Served</div>
+            <div class="m-sub">Every major trade corridor</div>
+          </div>
+          <div class="m-badge">+6 new</div>
+        </div>
+        <div class="m-card reveal from-right">
+          <div class="m-num" style="font-size:42px"><span id="cn4">0</span><span class="sfx">K</span></div>
+          <div>
+            <div class="m-lbl">Active Clients</div>
+            <div class="m-sub">SMB to Fortune 100</div>
+          </div>
+          <div class="m-badge">+340</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ NETWORK / GLOBE ═══ -->
+  <section class="net-section" id="network">
+    <div class="net-header reveal" style="text-align:center; max-width:900px; margin:0 auto 64px;">
+      <div class="sec-tag">Our Reach</div>
+      <h2>Connecting the world through efficient shipping solutions.</h2>
+      <p class="sec-p" style="margin:0 auto; margin-top:18px;">Strategic hub placement across 6 continents lets us route
+        cargo along the fastest, most cost-effective paths — always.</p>
+    </div>
+    <div class="net-grid">
+      <div>
+        <div class="net-stats reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+          <div class="ns">
+            <div class="ns-n">60+</div>
+            <div class="ns-l">Owned Hubs</div>
+          </div>
+          <div class="ns">
+            <div class="ns-n">800+</div>
+            <div class="ns-l">Partner Ports</div>
+          </div>
+          <div class="ns">
+            <div class="ns-n">2,400</div>
+            <div class="ns-l">Fleet Vehicles</div>
+          </div>
+          <div class="ns">
+            <div class="ns-n">24/7</div>
+            <div class="ns-l">Operations</div>
+          </div>
+        </div>
+      </div>
+      <div id="globe-wrap" class="reveal from-right">
+        <canvas id="globe-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOLUTIONS ═══ -->
+  <section class="sol-section" id="solutions">
+    <div class="sol-header reveal">
+      <div class="sec-tag">Flexible Options</div>
+      <h2>Explore our flexible<br>shipping options.</h2>
+    </div>
+    <div class="sol-grid">
+      <a href="ocean-freight.html" class="sol-card">
+        <img class="sol-img" src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=800&q=80"
+          alt="Sea Shipping" loading="lazy">
+        <div class="sol-ov"></div>
+        <div class="sol-ghost">01</div>
+        <div class="sol-cnt">
+          <span class="sol-tag">Marine · FCL · LCL</span>
+          <div class="sol-t">Sea Shipping</div>
+          <p class="sol-d">Cost-effective ocean freight for bulk cargo, from small LCL loads to full container shipments
+            worldwide.</p>
+        </div>
+      </a>
+      <a href="air-freight.html" class="sol-card">
+        <img class="sol-img" src="https://images.unsplash.com/photo-1570710891163-6d3b5c47248b?w=800&q=80"
+          alt="Air Cargo" loading="lazy">
+        <div class="sol-ov"></div>
+        <div class="sol-ghost">02</div>
+        <div class="sol-cnt">
+          <span class="sol-tag">Express · Charter · NFO</span>
+          <div class="sol-t">Air Cargo</div>
+          <p class="sol-d">When speed is non-negotiable. Next-flight-out and dedicated charters for urgent
+            time-sensitive freight.</p>
+        </div>
+      </a>
+      <a href="road-transport.html" class="sol-card">
+        <img class="sol-img" src="heavy_truck_highway_1776058158449.png" alt="Road Freight" loading="lazy">
+        <div class="sol-ov"></div>
+        <div class="sol-ghost">03</div>
+        <div class="sol-cnt">
+          <span class="sol-tag">FTL · LTL · Intermodal</span>
+          <div class="sol-t">Road Freight</div>
+          <p class="sol-d">Door-to-door trucking with GPS tracking, hazmat certification, and temperature-controlled
+            options.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══ 3D CUBE FEATURE ═══ -->
+  <section class="cube-section">
+    <canvas id="cube-canvas"></canvas>
+    <div class="cube-txt">
+      <div class="sec-tag">Technology</div>
+      <h2>Real-time cargo<br>intelligence.</h2>
+      <p class="sec-p">Our proprietary logistics platform gives you complete visibility over every shipment, every step
+        of the way — powered by live data and predictive analytics.</p>
+      <div class="cube-features">
+        <div class="cube-feat reveal">
+          <div class="cf-t">Live GPS Tracking</div>
+          <div class="cf-d">Update every 30 seconds across all transport modes</div>
+        </div>
+        <div class="cube-feat reveal">
+          <div class="cf-t">Predictive ETA</div>
+          <div class="cf-d">AI-powered delay forecasting 48hrs in advance</div>
+        </div>
+        <div class="cube-feat reveal">
+          <div class="cf-t">Custom Alerts</div>
+          <div class="cf-d">SMS and email notifications at every milestone</div>
+        </div>
+        <div class="cube-feat reveal">
+          <div class="cf-t">Carbon Tracking</div>
+          <div class="cf-d">Emissions reporting for every shipment</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MILESTONES ═══ -->
+  <section class="mile-section">
+    <div class="mile-header reveal">
+      <div class="sec-tag">Our Impact</div>
+      <h2>Deliver confidence.</h2>
+      <p>Every number represents a client who trusted us with their most critical shipments — and wasn't disappointed.
+      </p>
+    </div>
+    <div class="mile-grid reveal from-bottom">
+      <div class="cnt-blk">
+        <div class="cnt-n"><span class="cnum" data-t="1.5" data-s="M"></span></div>
+        <div class="cnt-l">Packages delivered</div>
+      </div>
+      <div class="cnt-blk">
+        <div class="cnt-n"><span class="cnum" data-t="99" data-s="%"></span></div>
+        <div class="cnt-l">Success rate</div>
+      </div>
+      <div class="cnt-blk">
+        <div class="cnt-n"><span class="cnum" data-t="140" data-s="+"></span></div>
+        <div class="cnt-l">Countries served</div>
+      </div>
+      <div class="cnt-blk">
+        <div class="cnt-n"><span class="cnum" data-t="16" data-s="yrs"></span></div>
+        <div class="cnt-l">Industry experience</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS -->
+  <div class="logos-sec">
+    <p class="logos-lbl">Trusted by global industry leaders</p>
+    <div class="logo-trk">
+      <span class="logo-i">Maersk</span><span class="logo-i">DHL Group</span><span class="logo-i">Samsung</span><span
+        class="logo-i">Unilever</span><span class="logo-i">Amazon</span><span class="logo-i">Nestlé</span><span
+        class="logo-i">Caterpillar</span><span class="logo-i">IKEA</span>
+      <span class="logo-i">Maersk</span><span class="logo-i">DHL Group</span><span class="logo-i">Samsung</span><span
+        class="logo-i">Unilever</span><span class="logo-i">Amazon</span><span class="logo-i">Nestlé</span><span
+        class="logo-i">Caterpillar</span><span class="logo-i">IKEA</span>
+    </div>
+  </div>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="cta-sec">
+    <div class="cta-ghost">SHIP</div>
+    <div class="sec-tag">Ready to ship?</div>
+    <h2>Ready to ship<br>with <span style="color:var(--orange)">confidence?</span></h2>
+    <p class="sec-p">Join 12,000+ businesses who trust FreightForce to move their most critical cargo on time, every
+      time.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-o">Get Started Now</a>
+      <a href="#contact" class="btn btn-g">Speak to an Expert</a>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="sec contact-sec">
+    <div class="con-grid">
+      <div class="con-info reveal from-left">
+        <span class="sec-tag">Contact Us</span>
+        <h2>Get a custom<br>logistics <span>quote.</span></h2>
+        <p class="sec-p">Our global desk is available 24/7. Whether it's a single shipment or an entire supply chain
+          overhaul, we have the expertise to deliver.</p>
+
+        <div class="con-details">
+          <div class="cd-item">
+            <div class="cd-ico"><span class="material-symbols-outlined">location_on</span></div>
+            <div>
+              <h5>Global Headquarters</h5>
+              <p>12th Floor, Trade Tower, Logistics Park, NY 10001</p>
+            </div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-ico"><span class="material-symbols-outlined">call</span></div>
+            <div>
+              <h5>24/7 Priority Support</h5>
+              <p>+1 (800) FREIGHT-FORCE</p>
+            </div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-ico"><span class="material-symbols-outlined">mail</span></div>
+            <div>
+              <h5>General Inquiries</h5>
+              <p>solutions@freightforce.io</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="con-form-wrap reveal from-right">
+        <form class="con-form">
+          <div class="f-row">
+            <div class="f-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="John Doe">
+            </div>
+            <div class="f-group">
+              <label>Work Email</label>
+              <input type="email" placeholder="john@company.com">
+            </div>
+          </div>
+          <div class="f-group">
+            <label>Company Website</label>
+            <input type="url" placeholder="https://">
+          </div>
+          <div class="f-group">
+            <label>Service Type</label>
+            <select>
+              <option>Sea Shipping</option>
+              <option>Air Cargo</option>
+              <option>Road Freight</option>
+              <option>Supply Chain Analytics</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Project Details</label>
+            <textarea placeholder="Tell us about your logistics requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-o" style="width:100%; justify-content:center;">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+  <footer class="ft-main">
+    <div class="ft-top">
+      <div class="ft-callout">
+        <div class="ft-c-tag">Global Logistics Platform</div>
+        <h3>Take your supply chain<br>to the <span>next level.</span></h3>
+        <div class="ft-c-btns">
+          <a href="#" class="btn btn-o">Get Started</a>
+          <a href="#" class="btn btn-w">Contact Sales</a>
+        </div>
+      </div>
+      <div class="ft-news">
+        <p>Subscribe to our logistics insights</p>
+        <div class="news-input">
+          <input type="email" placeholder="you@company.com">
+          <button>→</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="ft-mid">
+      <div class="ft-brand">
+        <div class="ft-logo">Freight<span>Force</span></div>
+        <p class="ft-desc">Pioneering the future of global cargo movement with AI-driven intelligence and an unmatched
+          physical network.</p>
+        <div class="ft-soc">
+          <a href="#" class="soc-btn">in</a>
+          <a href="#" class="soc-btn">𝕏</a>
+          <a href="#" class="soc-btn">f</a>
+          <a href="#" class="soc-btn">yt</a>
+        </div>
+      </div>
+      <div class="ft-nav-grid">
+        <div class="ft-col">
+          <h4>Services</h4>
+          <ul class="ft-links">
+            <li><a href="#services">Ocean Freight</a></li>
+            <li><a href="#services">Air Freight</a></li>
+            <li><a href="#services">Road Transport</a></li>
+            <li><a href="#services">Warehousing</a></li>
+            <li><a href="#services">Last Mile</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Company</h4>
+          <ul class="ft-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Careers</a></li>
+            <li><a href="#about">Newsroom</a></li>
+            <li><a href="#about">Partners</a></li>
+            <li><a href="#about">Sustainability</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h4>Support</h4>
+          <ul class="ft-links">
+            <li><a href="#contact">Track Shipment</a></li>
+            <li><a href="#contact">Get a Quote</a></li>
+            <li><a href="#about">Help Center</a></li>
+            <li><a href="#about">API Docs</a></li>
+            <li><a href="#about">System Status</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ft-big-ghost">FREIGHTFORCE</div>
+
+    <div class="ft-bot">
+      <div class="ft-bot-l">
+        <span>© 2026-2027 FreightForce Inc.</span>
+      </div>
+      <div class="ft-status">
+        <div class="s-dot"></div>
+        Systems Operational <span>— v4.2.0</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
