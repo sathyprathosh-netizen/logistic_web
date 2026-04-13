@@ -127,6 +127,8 @@ nav.on .n-r .btn-g{color:var(--black);border-color:var(--border)}
 .btn-o:hover{box-shadow:0 15px 35px rgba(255,138,0,0.4)}
 .btn-g{background:transparent;border:1px solid rgba(255,255,255,0.2) !important;color:var(--white)}
 .btn-g:hover{background:rgba(255,255,255,0.1); border-color:var(--white) !important}
+.btn-b{background:var(--black);border:1px solid var(--black) !important;color:var(--white)}
+.btn-b:hover{background:transparent; color:var(--black); border-color:var(--black) !important}
 
 /* ─────────────────────────────────────
    HERO
