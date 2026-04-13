@@ -548,7 +548,7 @@ h2{
 /* ─────────────────────────────────────
    3D CUBE SECTION
 ────────────────────────────────────── */
-.mile-section{padding:var(--sec-py) var(--pad);background:#f8f9fc;text-align:center}
+.mile-section{padding:var(--sec-py) var(--pad);background:#ffffff;text-align:center}
 .mile-header{max-width:800px;margin:0 auto 64px}
 .mile-header h2{margin-bottom:20px}
 .mile-header p{font-size:16px;color:var(--gray);margin:0 auto;max-width:560px}
@@ -559,11 +559,11 @@ h2{
 }
 .cnt-blk{
   padding:60px 30px;
-  background:#ffffff;border:1px solid rgba(0,0,0,0.04);
+  background:#ffffff;border:1.5px solid var(--border);
   border-radius:24px;text-align:center;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow:0 10px 40px rgba(0,0,0,0.04);
+  box-shadow:0 10px 32px rgba(0,0,0,0.03);
   min-height:240px;
   position:relative;
 }
@@ -572,7 +572,7 @@ h2{
   width:8px; height:8px; border-radius:50%; background:var(--orange);
   box-shadow: 0 0 0 4px rgba(255,138,0,0.1);
 }
-.cnt-blk:hover{transform:translateY(-12px); border-color:rgba(255,138,0,0.3); box-shadow:0 30px 70px rgba(0,0,0,0.08)}
+.cnt-blk:hover{transform:translateY(-12px); border-color:var(--orange); box-shadow:0 30px 60px rgba(0,0,0,0.08)}
 .cnt-n{
   font-family:var(--ff-h);font-size:62px;font-weight:800;
   color:var(--black);line-height:1;margin-bottom:12px;
